@@ -76,7 +76,7 @@ class SAM2(nn.Module):
         batch_size,_,_,_ = x.shape
         x = self.encoder(x)
         _, vision_feats, _, _ = self.prepare_backbone_features(x)
-        print(vision_feats[0].shape)
+        # print(vision_feats[0].shape)
         feats = [
             feat.permute(1, 2, 0).view(batch_size, -1, *feat_size)
             for feat, feat_size in zip(vision_feats[::-1], self._bb_feat_sizes[::-1])
