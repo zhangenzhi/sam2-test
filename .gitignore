@@ -1,0 +1,11 @@
+__pycache__
+.vscode
+output
+*.pth
+visualizations
+.DS_Store
+*_visual
+*.png
+*.jpg
+*.pyc
+*.nii.gz
