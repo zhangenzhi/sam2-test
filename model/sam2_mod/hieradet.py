@@ -201,10 +201,10 @@ class Hiera(nn.Module):
         self.q_pool_blocks = [x + 1 for x in self.stage_ends[:-1]][:q_pool]
         self.return_interm_layers = return_interm_layers
 
-        # self.patch_embed = PatchEmbed(
-        #     embed_dim=embed_dim,
-        #     in_chans = in_chans,
-        # )
+        self.patch_embed = PatchEmbed(
+            embed_dim=embed_dim,
+            in_chans = in_chans,
+        )
         # self.patch_embed_half = PatchEmbed(
         #     embed_dim=embed_dim,
         #     in_chans = in_chans,
@@ -285,9 +285,9 @@ class Hiera(nn.Module):
     def forward(self, x: torch.Tensor) -> List[torch.Tensor]:
         # import pdb
         # pdb.set_trace()
-        # x = self.patch_embed(x)
+        x = self.patch_embed(x)
         # x = self.patch_embed_half(x)
-        x = self.patch_embed_quad(x)
+        # x = self.patch_embed_quad(x)
         # x: (B, H, W, C)
 
         # Add pos embed
