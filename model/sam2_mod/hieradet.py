@@ -286,8 +286,8 @@ class Hiera(nn.Module):
         # import pdb
         # pdb.set_trace()
         # x = self.patch_embed(x)
-        x = self.patch_embed_half(x)
-        # x = self.patch_embed_quad(x)
+        # x = self.patch_embed_half(x)
+        x = self.patch_embed_quad(x)
         # x: (B, H, W, C)
 
         # Add pos embed
