@@ -43,16 +43,16 @@ class SAM2(nn.Module):
         ]
         self.mask_decoder = \
         nn.Sequential(
-            nn.ConvTranspose2d(in_channels=4096, out_channels=1024, kernel_size=2, stride=2, padding=0),
-            LayerNorm2d(1024),
+            nn.ConvTranspose2d(in_channels=256, out_channels=64, kernel_size=2, stride=2, padding=0),
+            LayerNorm2d(64),
             nn.GELU(),
-            nn.ConvTranspose2d(in_channels=1024, out_channels=512, kernel_size=2, stride=2, padding=0),
-            LayerNorm2d(512),
+            nn.ConvTranspose2d(in_channels=64, out_channels=64, kernel_size=2, stride=2, padding=0),
+            LayerNorm2d(64),
             nn.GELU(),
-            nn.ConvTranspose2d(in_channels=512, out_channels=128, kernel_size=2, stride=2, padding=0),
-            LayerNorm2d(128),
+            nn.ConvTranspose2d(in_channels=64, out_channels=64, kernel_size=2, stride=2, padding=0),
+            LayerNorm2d(64),
             nn.GELU(),
-            nn.ConvTranspose2d(in_channels=128, out_channels=64, kernel_size=2, stride=2, padding=0),
+            nn.ConvTranspose2d(in_channels=64, out_channels=64, kernel_size=2, stride=2, padding=0),
             LayerNorm2d(64),
             nn.GELU(),
             nn.Conv2d(64, output_dim, 1)
@@ -76,7 +76,7 @@ class SAM2(nn.Module):
         batch_size,_,_,_ = x.shape
         x = self.encoder(x)
         _, vision_feats, _, _ = self.prepare_backbone_features(x)
-        # print(vision_feats[0].shape)
+        print(vision_feats[0].shape)
         feats = [
             feat.permute(1, 2, 0).view(batch_size, -1, *feat_size)
             for feat, feat_size in zip(vision_feats[::-1], self._bb_feat_sizes[::-1])
