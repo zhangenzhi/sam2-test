@@ -205,21 +205,21 @@ class Hiera(nn.Module):
             embed_dim=embed_dim,
             in_chans = in_chans,
         )
-        # self.patch_embed_half = PatchEmbed(
-        #     embed_dim=embed_dim,
-        #     in_chans = in_chans,
-        #     stride=(2,2),
-        #     kernel_size=(2,2),
-        #     padding=(0,0)
-        # )
+        self.patch_embed_half = PatchEmbed(
+            embed_dim=embed_dim,
+            in_chans = in_chans,
+            stride=(2,2),
+            kernel_size=(2,2),
+            padding=(0,0)
+        )
         
-        # self.patch_embed_quad = PatchEmbed(
-        #     embed_dim=embed_dim,
-        #     in_chans = in_chans,
-        #     stride=(1,1),
-        #     kernel_size=(1,1),
-        #     padding=(0,0)
-        # )
+        self.patch_embed_quad = PatchEmbed(
+            embed_dim=embed_dim,
+            in_chans = in_chans,
+            stride=(1,1),
+            kernel_size=(1,1),
+            padding=(0,0)
+        )
         # Which blocks have global att?
         self.global_att_blocks = global_att_blocks
 
