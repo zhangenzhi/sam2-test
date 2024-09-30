@@ -43,18 +43,18 @@ class SAM2(nn.Module):
         ]
         self.mask_decoder = \
         nn.Sequential(
-            nn.ConvTranspose2d(in_channels=256, out_channels=64, kernel_size=2, stride=2, padding=0),
+            nn.ConvTranspose2d(in_channels=4096, out_channels=1024, kernel_size=2, stride=2, padding=0),
+            LayerNorm2d(1024),
+            nn.GELU(),
+            nn.ConvTranspose2d(in_channels=1024, out_channels=512, kernel_size=2, stride=2, padding=0),
+            LayerNorm2d(512),
+            nn.GELU(),
+            nn.ConvTranspose2d(in_channels=512, out_channels=128, kernel_size=2, stride=2, padding=0),
+            LayerNorm2d(128),
+            nn.GELU(),
+            nn.ConvTranspose2d(in_channels=128, out_channels=64, kernel_size=2, stride=2, padding=0),
             LayerNorm2d(64),
             nn.GELU(),
-            nn.ConvTranspose2d(in_channels=64, out_channels=64, kernel_size=2, stride=2, padding=0),
-            LayerNorm2d(64),
-            nn.GELU(),
-            # nn.ConvTranspose2d(in_channels=64, out_channels=64, kernel_size=2, stride=2, padding=0),
-            # LayerNorm2d(64),
-            # nn.GELU(),
-            # nn.ConvTranspose2d(in_channels=64, out_channels=64, kernel_size=2, stride=2, padding=0),
-            # LayerNorm2d(64),
-            # nn.GELU(),
             nn.Conv2d(64, output_dim, 1)
         )
             
