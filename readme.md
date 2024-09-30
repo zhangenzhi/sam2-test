@@ -10,7 +10,7 @@ python ./train/sam2_kits.py \
         --patch_size=16 \
         --pretrain=sam2-t \
         --epoch=1000 \
-        --batch_size=1 \
+        --batch_size=16 \
         --savefile=./sam2-kits-re
 
 # Explain
